@@ -56,7 +56,7 @@ Which countries have a GDP greater than every country in Europe? [Give the name 
 select name from world
 where GDP > All (select GDP from world where GDP>0 and continent = 'Europe')
 
---#6
+--#7
 /*
 Find the largest country (by area) in each continent, show the continent, the name and the area:
 */ 
