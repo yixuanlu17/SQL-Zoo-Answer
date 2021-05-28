@@ -48,3 +48,32 @@ FROM world
 WHERE population IN (SELECT population
                      FROM world
                      WHERE continent='Europe')
+                     
+--#6
+/*
+Which countries have a GDP greater than every country in Europe? [Give the name only.] (Some countries may have NULL gdp values)
+*/ 
+select name from world
+where GDP > All (select GDP from world where GDP>0 and continent = 'Europe')
+
+--#6
+/*
+Find the largest country (by area) in each continent, show the continent, the name and the area:
+*/ 
+
+ /*
+ method 1
+ */ 
+ select continent, name, area
+ from world 
+ where area in  (select max(area) from world group by continent)
+
+/*
+ method 2
+ */ 
+ select y.continent, name, y.area
+ from world x
+ join (select continent, MAX(area) AS area from world group by continent) y
+ on x. continent = y. continent and x. area=y. area
+
+
