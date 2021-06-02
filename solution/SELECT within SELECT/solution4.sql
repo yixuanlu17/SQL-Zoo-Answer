@@ -100,3 +100,7 @@ and population >0);
 /*
 Some countries have populations more than three times that of any of their neighbours (in the same continent). Give the countries and continents.
 */ 
+select name, continent from world x
+where population/3 > ALL
+(select population from world y where x.continent=y.continent
+and x.name != y.name)
