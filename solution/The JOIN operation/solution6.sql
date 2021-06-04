@@ -10,8 +10,28 @@ SELECT distinct player
 FROM game 
 JOIN goal ON goal.matchid = game.id 
     WHERE (team1='GER' or team2='GRE') and teamid <>'GER'
+    
+--#10
+/*
+Show the stadium and the number of goals scored in each stadium.
+*/
+SELECT stadium, COUNT(player) goals_scored
+FROM game
+JOIN goal ON game.id = goal.matchid
+GROUP BY stadium
+    
+--#11
+/*
+Show the stadium and the number of goals scored in each stadium.
+*/
+SELECT matchid,mdate,COUNT(teamid)
+  FROM game JOIN goal ON matchid = id 
+ WHERE (team1 = 'POL' OR team2 = 'POL')
+GROUP BY matchid,mdate
 
---#8
+
+
+--#13
 /*
 List every match with the goals scored by each team as shown. This will use "CASE WHEN" which has not been explained in any previous exercises.
 */
