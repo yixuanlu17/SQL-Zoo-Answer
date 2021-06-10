@@ -25,3 +25,14 @@ SELECT name, DAY(whn) day, confirmed- LAG(confirmed,1) OVER (PARTITION BY name O
       FROM covid
       WHERE name = 'Italy' AND MONTH(whn) = 3
       ORDER BY whn
+
+--#4
+/*
+Show the infect rate ranking for each country. Only include countries with a population of at least 10 million
+*/
+SELECT world.name,
+       ROUND(100000*confirmed/population,0) infection_rates_per_100000,
+       RANK() OVER (ORDER BY confirmed/population) rank_infection_rates
+  FROM covid JOIN world ON covid.name = world.name
+ WHERE whn = '2020-04-20' AND population > 10000000
+ ORDER BY population DESC;
