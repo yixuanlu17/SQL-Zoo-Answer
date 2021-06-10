@@ -26,7 +26,7 @@ SELECT name, DAY(whn) day, confirmed- LAG(confirmed,1) OVER (PARTITION BY name O
       WHERE name = 'Italy' AND MONTH(whn) = 3
       ORDER BY whn
 
---#4
+--#7
 /*
 Show the infect rate ranking for each country. Only include countries with a population of at least 10 million
 */
